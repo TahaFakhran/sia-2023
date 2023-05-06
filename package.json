@@ -1,0 +1,20 @@
+{
+  "name": "sia",
+  "version": "1.0.0",
+  "description": "\"# sia-2023\"",
+  "main": "sia.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon sia.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TahaFakhran/sia-2023.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/TahaFakhran/sia-2023/issues"
+  },
+  "homepage": "https://github.com/TahaFakhran/sia-2023#readme"
+}
