@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <title>Modifier Event</title>
     <link rel="stylesheet" href="styleAjouter.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
   </head>
   <body>
     <div class="background"></div>
@@ -22,18 +23,12 @@
           <label for="personne">Personne:</label>
           <select id="personne" name="personne" required>
             <option value="" disabled selected>Select Personne</option>
-            <option value="personne1">Personne 1</option>
-            <option value="personne2">Personne 2</option>
-            <option value="personne3">Personne 3</option>
           </select>
         </div>
         <div class="form-group">
           <label for="ouvrage">Ouvrage:</label>
           <select id="ouvrage" name="ouvrage" required>
             <option value="" disabled selected>Select Ouvrage</option>
-            <option value="ouvrage1">Ouvrage 1</option>
-            <option value="ouvrage2">Ouvrage 2</option>
-            <option value="ouvrage3">Ouvrage 3</option>
           </select>
         </div>
         <div class="form-group">
@@ -75,6 +70,30 @@
       // Delete the item here
       // remove id bla bla bla
       confirmationPopup.classList.add("hidden");
+    });
+  </script>
+  <script src="./globalVariables.js"></script>
+  <script type="text/javascript">
+    selectPole = document.getElementById("ouvrage");
+
+    poles_list.forEach((element) => {
+      var optionX = document.createElement("option");
+      optionX.value = element.name;
+      optionX.innerText = element.name;
+
+      optionX.id = "pl" + element.id;
+      selectPole.append(optionX);
+    });
+
+    selectPersonne = document.getElementById("personne");
+
+    Utilisateurs.forEach((user) => {
+      var optionX = document.createElement("option");
+      optionX.value = user[1] + " " + user[2];
+      optionX.innerText = user[1] + " " + user[2];
+
+      optionX.id = user[0];
+      selectPersonne.append(optionX);
     });
   </script>
 </html>
