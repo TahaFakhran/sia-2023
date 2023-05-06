@@ -12,7 +12,6 @@
     </script>
     <title>BETuF</title>
 </head>
-
 <body>
     <div id="topNav">
         <div id="logo">
@@ -21,7 +20,7 @@
         
         <ul>
             <li>CHANTIERS</li>
-            <li><a href="agenda.html">AGENDA</a></li>
+            <li type="button" onclick="openAgenda();">AGENDA</li>
             <li>INFORMATIONS</li>
             <li>LES INDISPENSABLES</li>
             <li>BETuF</li>
@@ -36,7 +35,14 @@
             <img src="source/icons8-france-24.png">
             <label>FR</label>
         </div>
-        <button class="button">Mon profil</button>
+      <div class="profil" id="profil">
+        <script type="text/javascript">
+          document.getElementById("profil").innerHTML=nom;
+      </script>
+        <button class="cube-titre" type="button" onclick="logout();">
+            Log out
+        </button>      
+    </div>
 
     </div>
     <hr class="underNav">

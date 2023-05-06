@@ -1,59 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
-    />
-    <link rel="stylesheet" href="style.css" />
-    <script src="connexion.js" language="JavaScript"></script>
-    <title>BETuF</title>
-
-
-    <script>
-      let data = sessionStorage.getItem("indice_co");
-      console.log(data)
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="style.css">
+    <script src="connexion.js" language="JavaScript">
     </script>
-  </head>
+    <title>BETuF</title>
+    <script>
+        let data = sessionStorage.getItem("indice_co");
+        console.log(data)
+      </script>
+</head>
 
-  <body>
+<body>
     <div id="topNav">
-      <div id="logo">BETuF</div>
+        <div id="logo">
+            BETuF
+        </div>
+        
+        <ul>
+            <li>CHANTIERS</li>
+            <li>INFORMATIONS</li>
+            <li>LES INDISPENSABLES</li>
+            <li>BETuF</li>
+        </ul>
+    
+        <div id="search">
+            <input class="searchInput" type="text" placeholder="Search..."> <i class="fa fa-search"></i>
+        </div>
+        
 
-      <ul>
-        <li>CHANTIERS</li>
-        <li>INFORMATIONS</li>
-        <li>LES INDISPENSABLES</li>
-        <li>BETuF</li>
-      </ul>
+        <div id="lang">
+            <img src="source/icons8-france-24.png">
+            <label>FR</label>
+        </div>
 
-      <div id="search">
-        <input class="searchInput" type="text" placeholder="Search..." />
-        <i class="fa fa-search"></i>
-      </div>
-
-      <div id="lang">
-        <img alt="icon" src="source/icons8-france-24.png" />
-        <label>FR</label>
-      </div>
     </div>
     <div class="container">
-      <form name="form">
-        <div>
-          <label for="id">Identifiant :</label>
-          <input type="text" id="id" name="user_name" />
-        </div>
-        <div>
-          <label for="mail">Mot de passe :</label>
-          <input title="password" type="password" id="mdp" name="user_mdp" />
-        </div>
-        <button type="button" onclick="connexion();">Submit</button>
-      </form>
+        <form name="form">
+            <div>
+                <label for="id">Identifiant :</label>
+                <input type="text" id="id" name="user_name">
+            </div>
+            <div>
+                <label for="mail">Mot de passe :</label>
+                <input type="password" id="mdp" name="user_mdp">
+            </div>
+            <button type="button" onclick="connexion();">Submit</button>
+        </form>
     </div>
-  </body>
-</html>
+    
+</body>
