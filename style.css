@@ -2,6 +2,33 @@ body {
     font-family: 'Roboto', Arial, sans-serif;
   }
 
+a{
+    font-family: 'Roboto', Arial, sans-serif;
+    text-decoration: none;
+    color: rgb(167,167,167);
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    vertical-align: middle;
+    height : 300px;
+}
+form {
+    display: table;
+}
+
+label{
+    text-align:right;
+    display: table-cell;
+    font-family: 'Roboto', Arial, sans-serif;
+}
+
+input {
+    margin-bottom: 10px;
+}
+
 #topNav {
     display: flex;
     justify-content: space-evenly;
