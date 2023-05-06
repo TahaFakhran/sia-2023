@@ -39,6 +39,7 @@ function connexion(){
     mdp = document.form.user_mdp.value;
     if ((ids.indexOf(id) == mdps.indexOf(mdp)) & ids.indexOf(id) != -1){
         indice_co = ids.indexOf(id);
+        sessionStorage.setItem("indice_co", indice_co);
         open('home2.html');
 
     }else{
