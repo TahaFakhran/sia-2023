@@ -1,22 +1,24 @@
-poles_list = [
-  {
-    name: "Personel",
-    id: 4,
-  },
-  ,
-  {
-    name: "electriciter",
-    id: 1,
+  poles_list = [{
+    name: "Sécurité",
+    id: 1
   },
   {
-    name: "eau",
-    id: 2,
+    name: "Equipements électriques et gestion",
+    id: 2
   },
   {
-    name: "Danger",
-    id: 3,
+    name: "Exploitation",
+    id: 3
   },
-];
+  {
+    name: "Géologie, Géothermie",
+    id: 4
+  },
+  {
+    name:"Constructio, Marchés, Exécution",
+    id:5
+  }
+]
 
 let Utilisateurs = [
   ["ahere", "Hère", "Axel", "axel.here@betuf.fr", "abcde", "Directeur", ""],

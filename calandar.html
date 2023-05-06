@@ -209,10 +209,7 @@
   //AJOUTER LES POLES
 
   //BD
-  poles_list = [ {
-    name: "Personel",
-    id: 4
-  },,{
+  poles_list = [{
     name: "Ventilation",
     id: 1
   },
@@ -234,6 +231,14 @@
 
   //Loop les elements dans le select
   selectPole = document.getElementById("pole-select")
+
+  var optionX = document.createElement("option");
+    optionX.value = "all"
+    optionX.innerText = "Personel"
+
+    optionX.id = "pl"+element.id
+    selectPole.append(optionX)
+  
   poles_list.forEach(element => {
     var optionX = document.createElement("option");
     optionX.value = element.name
