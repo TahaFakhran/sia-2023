@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.1.0/fullcalendar.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.7/semantic.min.css">
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.7/semantic.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.17.1/moment.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.1.0/fullcalendar.min.js"></script>
+
+  <script src="./globalVariables.js"></script>
+
+  <title>BETuF</title>
+</head>
+
+<body>
+  <div id="topNav">
+    <div id="logo">
+      BETuF
+    </div>
+
+    <ul>
+      <li>CHANTIERS</li>
+      <li>INFORMATIONS</li>
+      <li>LES INDISPENSABLES</li>
+      <li>BETuF</li>
+    </ul>
+
+    <div id="search">
+      <input class="searchInput" type="text" placeholder="Search..."> <i class="fa fa-search"></i>
+    </div>
+
+
+    <div id="lang">
+      <img src="source/icons8-france-24.png">
+      <label>FR</label>
+    </div>
+    <button class="button">Connexcion</button>
+
+  </div>
+  <hr class="underNav">
+
+  <div class="content">
+    <h2>Agenda</h2>
+    
+
+
+    <div class="ui container">
+
+      <select class="ui dropdown item" name="pole" id="pole-select">
+      </select>
+      <select class="ui dropdown item" name="categ" id="categ-select">
+      </select>
+      <button onclick="window.location.href='Ajouter.html'">+</button>
+      <div class="ui menu">
+        
+      <div class="ui container">
+        <div class="ui grid">
+          <div class="ui sixteen column">
+            <div id="calendar"></div>
+          </div>
+        </div>
+      </div>
+
+    </div> 
+      </div>
+
+
+</body>
+
+<script>
+  $(document).ready(function () {
+
+    $('#calendar').fullCalendar({
+      header: {
+        left: 'prev,next today',
+        center: 'title',
+        right: 'month,basicWeek,basicDay'
+      },
+      defaultDate: '2016-12-12',
+      navLinks: true, // can click day/week names to navigate views
+      editable: true,
+      eventLimit: true, // allow "more" link when too many events
+      events: eventDBFiltre
+    });
+
+  });
+
+  
+
+
+//Copy From original database
+  var eventDBFiltre = eventDB;
+
+
+
+
+  const userId = Date.now().toString(36) + Math.random().toString(36).substr(2)
+
+</script>
+
+<script>
+  //AJOUTER LES POLES
+
+  //BD
+//   poles_list = [{
+//     name: "Ventilation",
+//     id: 1
+//   },
+//   {
+//     name: "Eclairage",
+//     id: 2
+//   },
+//   {
+//     name: "Alimentation électrique",
+//     id: 3
+//   },
+//   {
+//     name: "Réseau d'eau",
+//     id: 4
+//   }
+// ]
+
+
+
+  //Loop les elements dans le select
+  selectPole = document.getElementById("pole-select")
+
+  var optionX = document.createElement("option");
+    optionX.value = "all"
+    optionX.innerText = "Personel"
+
+    optionX.id = "pl"+
+    selectPole.append(optionX)
+  
+  poles_list.forEach(element => {
+    var optionX = document.createElement("option");
+    optionX.value = element.name
+    optionX.innerText = element.name
+
+    optionX.id = "pl"+element.id
+    selectPole.append(optionX)
+  });
+
+
+  //AJOUTER LES CATEGORIES
+
+
+
+  //Loop les elements dans le select
+  selectCateg = document.getElementById("categ-select")
+  ouvrages_list.forEach(element => {
+    var optionX = document.createElement("option");
+    optionX.value = element.name
+    optionX.innerText = element.name
+
+    optionX.id = "cg"+element.id
+    selectCateg.append(optionX)
+  });
+
+
+
+//Filtering POLE
+selectPole.addEventListener("change", function() {
+
+eventDBFiltre = eventDB.filter(event => event.pole == selectPole.value)
+
+$('#calendar').fullCalendar('removeEvents');
+
+eventDBFiltre.forEach(element => {
+  $('#calendar').fullCalendar( 'renderEvent', element);
+  })
+});
+
+
+
+//Filtering Categorie
+selectCateg.addEventListener("change", function() {
+
+eventDBFiltre = eventDB.filter(event => event.categ == selectCateg.value)
+
+$('#calendar').fullCalendar('removeEvents');
+
+eventDBFiltre.forEach(element => {
+  $('#calendar').fullCalendar( 'renderEvent', element);
+  })
+});
+
+</script>
+
+</html>

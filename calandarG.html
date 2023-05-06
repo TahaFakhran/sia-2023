@@ -16,6 +16,8 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.17.1/moment.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.1.0/fullcalendar.min.js"></script>
 
+  <script src="./globalVariables.js"></script>
+
   <title>BETuF</title>
 </head>
 
@@ -57,40 +59,9 @@
       </select>
       <select class="ui dropdown item" name="categ" id="categ-select">
       </select>
-      <button>+</button>
+      <button onclick="window.location.href='Ajouter.html'">+</button>
       <div class="ui menu">
         
-
-        <!-- <div class="header item">Brand</div>
-            <a class="active item">Link</a>
-            <a class="item">Link</a>
-            <div class="ui dropdown item">
-              Dropdown
-              <i class="dropdown icon"></i>
-              <div class="menu">
-                <div class="item">Action</div>
-                <div class="item">Another Action</div>
-                <div class="item">Something else here</div>
-                <div class="divider"></div>
-                <div class="item">Separated Link</div>
-                <div class="divider"></div>
-                <div class="item">One more separated link</div>
-              </div>
-            </div>
-            <div class="right menu">
-              <div class="item">
-                <div class="ui action left icon input">
-                  <i class="search icon"></i>
-                  <input type="text" placeholder="Search">
-                  <button class="ui button">Submit</button>
-                </div>
-              </div>
-              <a class="item">Link</a>
-            </div>
-          </div>
-        </div>
-
-      <br />-->
       <div class="ui container">
         <div class="ui grid">
           <div class="ui sixteen column">
@@ -114,7 +85,7 @@
         center: 'title',
         right: 'month,basicWeek,basicDay'
       },
-      defaultDate: '2016-12-12',
+      defaultDate: '2023-05-12',
       navLinks: true, // can click day/week names to navigate views
       editable: true,
       eventLimit: true, // allow "more" link when too many events
@@ -123,110 +94,16 @@
 
   });
 
-  eventDB = [
-    {
-      title: 'All Day Event',
-      start: '2016-12-01',
-      pole:"electricite",
-    },
-    {
-      title: 'Long Event',
-      people: 'ahahha',
-      start: '2016-12-07',
-      end: '2016-12-10',
-      pole:"electricite",
-    },
-    {
-      id: 999,
-      title: 'Repeating Event',
-      start: '2016-12-09T16:00:00',
-      pole:"electricite",
-    },
-    {
-      id: 999,
-      title: 'Repeating Event',
-      start: '2016-12-16T16:00:00',
-      pole:"electricite",
-    },
-    {
-      title: 'Conference',
-      start: '2016-12-11',
-      end: '2016-12-13',
-      pole:"electricite",
-    },
-    {
-      title: 'Meeting',
-      start: '2016-12-12T10:30:00',
-      end: '2016-12-12T12:30:00',
-      pole:"electricite",
-    },
-    {
-      title: 'Lunch',
-      start: '2016-12-12T12:00:00',
-      pole:"electricite",
-    },
-    {
-      title: 'Meeting',
-      start: '2016-12-12T14:30:00',
-      pole:"electricite",
-    },
-    {
-      title: 'Happy Hour',
-      start: '2016-12-12T17:30:00',
-      pole:"electrtttticite",
-    },
-    {
-      title: 'Dinner',
-      start: '2016-12-12T20:00:00',
-      pole:"tttt",
-    },
-    {
-      title: 'Birthday Party',
-      start: '2016-12-13T07:00:00',
-      pole:"ttttt",
-    },
-    {
-      id: 3,
-      title: 'Click for Google',
-      pole:"ttt",
-      url: 'Ajouter.html?id=' + 3,
-      start: '2016-12-28'
-    }
-  ]
+  
 
 
 //Copy From original database
   var eventDBFiltre = eventDB;
 
-
-
-
-  const userId = Date.now().toString(36) + Math.random().toString(36).substr(2)
-
 </script>
 
 <script>
   //AJOUTER LES POLES
-
-  //BD
-  poles_list = [{
-    name: "Ventilation",
-    id: 1
-  },
-  {
-    name: "Eclairage",
-    id: 2
-  },
-  {
-    name: "Alimentation électrique",
-    id: 3
-  },
-  {
-    name: "Réseau d'eau",
-    id: 4
-  }
-]
-
 
 
   //Loop les elements dans le select
@@ -236,7 +113,7 @@
     optionX.value = "all"
     optionX.innerText = "Personel"
 
-    optionX.id = "pl"+element.id
+    optionX.id = "pl"
     selectPole.append(optionX)
   
   poles_list.forEach(element => {
@@ -251,26 +128,12 @@
 
   //AJOUTER LES CATEGORIES
 
-  //BD
-  categ_list = [{
-    name: "electricite",
-    id: 1
-  },
-  {
-    name: "eau",
-    id: 2
-  },
-  {
-    name: "Danger",
-    id: 3
-  }]
-
 
 
 
   //Loop les elements dans le select
   selectCateg = document.getElementById("categ-select")
-  categ_list.forEach(element => {
+  ouvrages_list.forEach(element => {
     var optionX = document.createElement("option");
     optionX.value = element.name
     optionX.innerText = element.name
@@ -283,6 +146,8 @@
 
 //Filtering POLE
 selectPole.addEventListener("change", function() {
+
+  
 
 eventDBFiltre = eventDB.filter(event => event.pole == selectPole.value)
 
