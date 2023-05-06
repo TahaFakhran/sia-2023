@@ -57,6 +57,7 @@
       </select>
       <select class="ui dropdown item" name="categ" id="categ-select">
       </select>
+      <button>+</button>
       <div class="ui menu">
         
 
@@ -125,58 +126,70 @@
   eventDB = [
     {
       title: 'All Day Event',
-      start: '2016-12-01'
+      start: '2016-12-01',
+      pole:"electricite",
     },
     {
       title: 'Long Event',
       people: 'ahahha',
       start: '2016-12-07',
-      end: '2016-12-10'
+      end: '2016-12-10',
+      pole:"electricite",
     },
     {
       id: 999,
       title: 'Repeating Event',
-      start: '2016-12-09T16:00:00'
+      start: '2016-12-09T16:00:00',
+      pole:"electricite",
     },
     {
       id: 999,
       title: 'Repeating Event',
-      start: '2016-12-16T16:00:00'
+      start: '2016-12-16T16:00:00',
+      pole:"electricite",
     },
     {
       title: 'Conference',
       start: '2016-12-11',
-      end: '2016-12-13'
+      end: '2016-12-13',
+      pole:"electricite",
     },
     {
       title: 'Meeting',
       start: '2016-12-12T10:30:00',
-      end: '2016-12-12T12:30:00'
+      end: '2016-12-12T12:30:00',
+      pole:"electricite",
     },
     {
       title: 'Lunch',
-      start: '2016-12-12T12:00:00'
+      start: '2016-12-12T12:00:00',
+      pole:"electricite",
     },
     {
       title: 'Meeting',
-      start: '2016-12-12T14:30:00'
+      start: '2016-12-12T14:30:00',
+      pole:"electricite",
     },
     {
       title: 'Happy Hour',
-      start: '2016-12-12T17:30:00'
+      start: '2016-12-12T17:30:00',
+      pole:"electrtttticite",
     },
     {
       title: 'Dinner',
-      start: '2016-12-12T20:00:00'
+      start: '2016-12-12T20:00:00',
+      pole:"tttt",
     },
     {
       title: 'Birthday Party',
-      start: '2016-12-13T07:00:00'
+      start: '2016-12-13T07:00:00',
+      pole:"ttttt",
     },
     {
       id: 3,
       title: 'Click for Google',
-      url: 'modification.html?id=' + 3,
+      pole:"ttt",
+      url: 'Ajouter.html?id=' + 3,
       start: '2016-12-28'
     }
   ]
@@ -200,17 +213,22 @@
     name: "Personel",
     id: 4
   },,{
-    name: "electriciter",
+    name: "Ventilation",
     id: 1
   },
   {
-    name: "eau",
+    name: "Eclairage",
     id: 2
   },
   {
-    name: "Danger",
+    name: "Alimentation électrique",
     id: 3
-  }]
+  },
+  {
+    name: "Réseau d'eau",
+    id: 4
+  }
+]
 
 
 
@@ -230,7 +248,7 @@
 
   //BD
   categ_list = [{
-    name: "electriciter",
+    name: "electricite",
     id: 1
   },
   {
@@ -258,8 +276,31 @@
 
 
 
-//Filtering 
+//Filtering POLE
+selectPole.addEventListener("change", function() {
 
+eventDBFiltre = eventDB.filter(event => event.pole == selectPole.value)
+
+$('#calendar').fullCalendar('removeEvents');
+
+eventDBFiltre.forEach(element => {
+  $('#calendar').fullCalendar( 'renderEvent', element);
+  })
+});
+
+
+
+//Filtering Categorie
+selectCateg.addEventListener("change", function() {
+
+eventDBFiltre = eventDB.filter(event => event.categ == selectCateg.value)
+
+$('#calendar').fullCalendar('removeEvents');
+
+eventDBFiltre.forEach(element => {
+  $('#calendar').fullCalendar( 'renderEvent', element);
+  })
+});
 
 </script>
 
