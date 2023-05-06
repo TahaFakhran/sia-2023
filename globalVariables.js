@@ -208,6 +208,7 @@ eventDB = [
     start: '2023-05-01',
     persone:"jdoe",
     url: 'Modifier.html?id=' + "hadw8hiaua",
+    ouvrage:"Tunnel sous la manche",
     pole:"Sécurité"
   },
   {
@@ -217,6 +218,7 @@ eventDB = [
     end: '2023-05-10',
     persone:"atoutdroit",
     url: 'Modifier.html?id=' + "a9suh9as",
+    ouvrage:"Tunnel sous la manche",
     pole:"Géologie, Géothermie",
   },
 
@@ -226,6 +228,7 @@ eventDB = [
     start: '2023-05-09T16:00:00',
     persone:"rtaurout",
     url: 'Modifier.html?id=' + "ashhc8sc",
+    ouvrage:"Tunnel de base des Apennins",
     pole:"Equipements électriques et gestion"
   },
 
@@ -235,6 +238,7 @@ eventDB = [
     start: '2023-05-16T16:00:00',
     persone:"ahere",
     url: 'Modifier.html?id=' + "awdadadaaw",
+    ouvrage:"Tunnel de base des Apennins",
     pole:"",
   },
   {
@@ -244,6 +248,7 @@ eventDB = [
     end: '2023-05-13',
     persone:"lrection",
     url: 'Modifier.html?id=' + "a9suh9as",
+    ouvrage:"Tunnel du simplon",
     pole:"Sécurité",
   },
   {
@@ -253,6 +258,7 @@ eventDB = [
     end: '2023-05-12T12:30:00',
     persone:"atoutdroit",
     url: 'Modifier.html?id=' + "drgdrgdr",
+    ouvrage:"Tunnel de base des Apennins",
     pole:"Géologie, Géothermie",
   },
   {
@@ -261,6 +267,7 @@ eventDB = [
     start: '2023-05-12T12:00:00',
     persone:"atoutdroit",
     url: 'Modifier.html?id=' + "hgfdsawd",
+    ouvrage:"Tunnel de base des Apennins",
     pole:"Géologie, Géothermie",
   },
 

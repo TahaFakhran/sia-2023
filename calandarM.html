@@ -59,7 +59,7 @@
       </select>
       <select class="ui dropdown item" name="categ" id="categ-select">
       </select>
-      <button onclick="window.location.href='Ajouter.html'">+</button>
+    
       <div class="ui menu">
         
       <div class="ui container">
@@ -85,7 +85,7 @@
         center: 'title',
         right: 'month,basicWeek,basicDay'
       },
-      defaultDate: '2016-12-12',
+      defaultDate: '2023-05-12',
       navLinks: true, // can click day/week names to navigate views
       editable: true,
       eventLimit: true, // allow "more" link when too many events
@@ -98,65 +98,47 @@
 
 
 //Copy From original database
-  var eventDBFiltre = eventDB;
+  var eventDBFiltreByPerson = eventDB;
 
+  //Apply filters
+  let userInd = sessionStorage.getItem("indice_co");
+  console.log("Pole du mec :"+Utilisateurs[userInd][6])
+  eventDBFiltreByPerson = eventDBFiltreByPerson.filter(event => event.pole == Utilisateurs[userInd][6])
+  eventDBFiltre = eventDBFiltreByPerson
 
-
-
-  const userId = Date.now().toString(36) + Math.random().toString(36).substr(2)
 
 </script>
 
 <script>
   //AJOUTER LES POLES
 
-  //BD
-//   poles_list = [{
-//     name: "Ventilation",
-//     id: 1
-//   },
-//   {
-//     name: "Eclairage",
-//     id: 2
-//   },
-//   {
-//     name: "Alimentation électrique",
-//     id: 3
-//   },
-//   {
-//     name: "Réseau d'eau",
-//     id: 4
-//   }
-// ]
-
-
 
   //Loop les elements dans le select
   selectPole = document.getElementById("pole-select")
 
   var optionX = document.createElement("option");
-    optionX.value = "all"
-    optionX.innerText = "Personel"
-
-    optionX.id = "pl"+
+    optionX.value = "Tout"
+    optionX.innerText = "Tout"
     selectPole.append(optionX)
   
-  poles_list.forEach(element => {
+
     var optionX = document.createElement("option");
-    optionX.value = element.name
-    optionX.innerText = element.name
-
-    optionX.id = "pl"+element.id
+    optionX.value = "Personel"
+    optionX.innerText = "Personel"
     selectPole.append(optionX)
-  });
 
-
-  //AJOUTER LES CATEGORIES
 
 
 
   //Loop les elements dans le select
   selectCateg = document.getElementById("categ-select")
+  //Ajouter Tout
+  var optionX = document.createElement("option");
+    optionX.value = "Tout"
+    optionX.innerText = "Tout"
+    optionX.id = "cg"
+    selectCateg.append(optionX)
+//Ajouter le rest des elements
   ouvrages_list.forEach(element => {
     var optionX = document.createElement("option");
     optionX.value = element.name
@@ -166,12 +148,14 @@
     selectCateg.append(optionX)
   });
 
-
+console.log(Utilisateurs[userInd][0]);
 
 //Filtering POLE
 selectPole.addEventListener("change", function() {
 
-eventDBFiltre = eventDB.filter(event => event.pole == selectPole.value)
+  
+
+  filter()
 
 $('#calendar').fullCalendar('removeEvents');
 
@@ -185,7 +169,7 @@ eventDBFiltre.forEach(element => {
 //Filtering Categorie
 selectCateg.addEventListener("change", function() {
 
-eventDBFiltre = eventDB.filter(event => event.categ == selectCateg.value)
+  filter()
 
 $('#calendar').fullCalendar('removeEvents');
 
@@ -194,6 +178,48 @@ eventDBFiltre.forEach(element => {
   })
 });
 
+
+
+
+
+
+
+
+
+
+function filter(){
+console.log("categ : " + selectCateg.value);
+console.log("pole : " + selectPole.value);
+console.log("id : "+Utilisateurs[userInd][0]);
+
+if(selectPole.value == "Tout" && selectCateg.value == "Tout"){
+console.log("am i here ?")
+eventDBFiltre = eventDBFiltreByPerson;
+console.log(eventDBFiltreByPerson)
+console.log(eventDBFiltre)
+}
+else if(selectPole.value == "Tout"){
+
+eventDBFiltre = eventDBFiltreByPerson.filter(event => event.ouvrage == selectCateg.value)
+
+}
+else if(selectPole.value == "Personel" && selectCateg.value == "Tout"){
+
+eventDBFiltre = eventDBFiltreByPerson.filter(event => event.persone == Utilisateurs[userInd][0])
+}
+else if(selectPole.value == "Personel"){
+
+eventDBFiltre = eventDBFiltreByPerson.filter(event => event.persone == Utilisateurs[userInd][0] && event.ouvrage == selectCateg.value )
+
+}else if(selectCateg.value == "Tout"){
+
+eventDBFiltre = eventDBFiltreByPerson.filter(event => event.pole == selectPole.value)
+
+}else {
+
+eventDBFiltre = eventDBFiltreByPerson.filter(event => event.pole == selectPole.value && event.ouvrage == selectCateg.value)
+}
+}
 </script>
 
 </html>
