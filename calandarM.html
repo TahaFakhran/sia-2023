@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+nom
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.1.0/fullcalendar.min.css">
@@ -44,16 +44,17 @@
       <label>FR</label>
     </div>
     
+    <div class="profil" id="profil">
+      <script type="text/javascript">
+        document.getElementById("profil").innerHTML=nom + " "+ prenom;
+    </script>
+      <button class="cube-titre" type="button" onclick="logout();">
+          Log out
+      </button>      
+  </div>
 
   </div>
-  <div class="profil" id="profil">
-    <script type="text/javascript" src="connexion.js">
-      document.getElementById("profil").innerHTML=nom + " "+ prenom;
-  </script>
-    <button class="cube-titre" type="button" onclick="logout();">
-        Log out
-    </button>      
-</div>
+
   <hr class="underNav">
 
   <div class="content">
@@ -110,8 +111,8 @@
 
   //Apply filters
   let userInd = sessionStorage.getItem("indice_co");
-  console.log("Pole du mec :"+Utilisateurs[userInd][6])
-  eventDBFiltreByPerson = eventDBFiltreByPerson.filter(event => event.pole == Utilisateurs[userInd][6])
+  console.log("Pole du mec :"+Utilisateurs2[userInd][6])
+  eventDBFiltreByPerson = eventDBFiltreByPerson.filter(event => event.pole == Utilisateurs2[userInd][6])
   eventDBFiltre = eventDBFiltreByPerson
 
 
@@ -156,7 +157,7 @@
     selectCateg.append(optionX)
   });
 
-console.log(Utilisateurs[userInd][0]);
+console.log(Utilisateurs2[userInd][0]);
 
 //Filtering POLE
 selectPole.addEventListener("change", function() {
@@ -198,7 +199,7 @@ eventDBFiltre.forEach(element => {
 function filter(){
 console.log("categ : " + selectCateg.value);
 console.log("pole : " + selectPole.value);
-console.log("id : "+Utilisateurs[userInd][0]);
+console.log("id : "+Utilisateurs2[userInd][0]);
 
 if(selectPole.value == "Tout" && selectCateg.value == "Tout"){
 console.log("am i here ?")
@@ -213,11 +214,11 @@ eventDBFiltre = eventDBFiltreByPerson.filter(event => event.ouvrage == selectCat
 }
 else if(selectPole.value == "Personel" && selectCateg.value == "Tout"){
 
-eventDBFiltre = eventDBFiltreByPerson.filter(event => event.persone == Utilisateurs[userInd][0])
+eventDBFiltre = eventDBFiltreByPerson.filter(event => event.persone == Utilisateurs2[userInd][0])
 }
 else if(selectPole.value == "Personel"){
 
-eventDBFiltre = eventDBFiltreByPerson.filter(event => event.persone == Utilisateurs[userInd][0] && event.ouvrage == selectCateg.value )
+eventDBFiltre = eventDBFiltreByPerson.filter(event => event.persone == Utilisateurs2[userInd][0] && event.ouvrage == selectCateg.value )
 
 }else if(selectCateg.value == "Tout"){
 

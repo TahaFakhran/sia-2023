@@ -44,15 +44,19 @@
       <label>FR</label>
     </div>
     
+    <div class="profil" id="profil">
+      <script type="text/javascript"s>
+        console.log("nom")
+        console.log(nom)
+        document.getElementById("profil").innerHTML=nom + " "+ prenom;
+    </script>
+      <button class="cube-titre" type="button" onclick="logout();">
+          Log out
+      </button>      
   </div>
-  <div class="profil" id="profil">
-    <script type="text/javascript" src="connexion.js">
-      document.getElementById("profil").innerHTML=nom + " "+ prenom;
-  </script>
-    <button class="cube-titre" type="button" onclick="logout();">
-        Log out
-    </button>      
-</div>
+    
+  </div>
+ 
   <hr class="underNav">
 
   <div class="content">
@@ -109,8 +113,8 @@
 
   //Apply filters
   let userInd = sessionStorage.getItem("indice_co");
-  console.log("Pole du mec :"+Utilisateurs[userInd][6])
-  eventDBFiltreByPerson = eventDBFiltreByPerson.filter(event => event.pole == Utilisateurs[userInd][6])
+  console.log("Pole du mec :"+Utilisateurs2[userInd][6])
+  eventDBFiltreByPerson = eventDBFiltreByPerson.filter(event => event.pole == Utilisateurs2[userInd][6])
   eventDBFiltre = eventDBFiltreByPerson
 
 
@@ -155,7 +159,7 @@
     selectCateg.append(optionX)
   });
 
-console.log(Utilisateurs[userInd][0]);
+console.log(Utilisateurs2[userInd][0]);
 
 //Filtering POLE
 selectPole.addEventListener("change", function() {
@@ -197,7 +201,7 @@ eventDBFiltre.forEach(element => {
 function filter(){
 console.log("categ : " + selectCateg.value);
 console.log("pole : " + selectPole.value);
-console.log("id : "+Utilisateurs[userInd][0]);
+console.log("id : "+Utilisateurs2[userInd][0]);
 
 if(selectPole.value == "Tout" && selectCateg.value == "Tout"){
 console.log("am i here ?")
@@ -212,11 +216,11 @@ eventDBFiltre = eventDBFiltreByPerson.filter(event => event.ouvrage == selectCat
 }
 else if(selectPole.value == "Personel" && selectCateg.value == "Tout"){
 
-eventDBFiltre = eventDBFiltreByPerson.filter(event => event.persone == Utilisateurs[userInd][0])
+eventDBFiltre = eventDBFiltreByPerson.filter(event => event.persone == Utilisateurs2[userInd][0])
 }
 else if(selectPole.value == "Personel"){
 
-eventDBFiltre = eventDBFiltreByPerson.filter(event => event.persone == Utilisateurs[userInd][0] && event.ouvrage == selectCateg.value )
+eventDBFiltre = eventDBFiltreByPerson.filter(event => event.persone == Utilisateurs2[userInd][0] && event.ouvrage == selectCateg.value )
 
 }else if(selectCateg.value == "Tout"){
 

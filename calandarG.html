@@ -43,17 +43,18 @@
       <img src="source/icons8-france-24.png">
       <label>FR</label>
     </div>
-    
 
+    <div class="profil" id="profil">
+      <script type="text/javascript">
+        document.getElementById("profil").innerHTML=nom + " "+ prenom;
+    </script>
+      <button class="cube-titre" type="button" onclick="logout();">
+          Log out
+      </button>      
   </div>
-  <div class="profil" id="profil">
-    <script type="text/javascript" src="connexion.js">
-      document.getElementById("profil").innerHTML=nom + " "+ prenom;
-  </script>
-    <button class="cube-titre" type="button" onclick="logout();">
-        Log out
-    </button>      
-</div>
+  
+  </div>
+
   <hr class="underNav">
 
   <div class="content">
@@ -166,7 +167,7 @@
     selectCateg.append(optionX)
   });
 
-console.log(Utilisateurs[userInd][0]);
+
 
 //Filtering POLE
 selectPole.addEventListener("change", function() {
@@ -206,9 +207,6 @@ eventDBFiltre.forEach(element => {
 
 
 function filter(){
-console.log("categ : " + selectCateg.value);
-console.log("pole : " + selectPole.value);
-console.log("id : "+Utilisateurs[userInd][0]);
 
 if(selectPole.value == "Tout" && selectCateg.value == "Tout"){
 
@@ -221,11 +219,11 @@ eventDBFiltre = eventDBFiltreByPerson.filter(event => event.ouvrage == selectCat
 }
 else if(selectPole.value == "Personel" && selectCateg.value == "Tout"){
 
-eventDBFiltre = eventDBFiltreByPerson.filter(event => event.persone == Utilisateurs[userInd][0])
+eventDBFiltre = eventDBFiltreByPerson.filter(event => event.persone == Utilisateurs2[userInd][0])
 }
 else if(selectPole.value == "Personel"){
 
-eventDBFiltre = eventDBFiltreByPerson.filter(event => event.persone == Utilisateurs[userInd][0] && event.ouvrage == selectCateg.value )
+eventDBFiltre = eventDBFiltreByPerson.filter(event => event.persone == Utilisateurs2[userInd][0] && event.ouvrage == selectCateg.value )
 
 }else if(selectCateg.value == "Tout"){
 

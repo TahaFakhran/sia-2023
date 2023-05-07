@@ -52,7 +52,7 @@ let ouvrages_list = [
               }
             ]
 
-let Utilisateurs = [
+let Utilisateurs2 = [
   ["ahere", "Hère", "Axel", "axel.here@betuf.fr", "abcde", "Directeur", ""],
   [
     "vroule",

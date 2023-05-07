@@ -1,5 +1,5 @@
 // Base de données
-let Utilisateurs = [
+var Utilisateurs = [
     ['ahere', 'Hère', 'Axel', 'axel.here@betuf.fr', 'abcde', 'Directeur', ''],
     ['vroule', 'Roule', 'Vanessa', 'vanessa.roule@betuf.fr', 'abcdef', 'Directeur recherche', ''],
     ['vsunnick', 'Sunnick', 'Vincent', 'vincent.sunnick@betuf.fr', 'abcdefg', 'Secrétaire général', ''],
@@ -19,7 +19,7 @@ let Utilisateurs = [
     ['jdoe', 'Doe', 'Jane', 'jane.doe@betuf.fr', 'aaaa', 'Technicien', 'Sécurité']
 ]
 
-let Events = [];
+// let Events = [];
 
 ids = []
 mdps = []
@@ -92,27 +92,27 @@ function ajouter(){
     }
 }
 
-function addEvt(){
-    if (auto_partielle){
-        if (document.getElementById('pole').value == Utilisateurs[indice_co][6] | auto_totale){
-            evt = [];
-            id_evt = Date.now.toString(36) + Math.random().toString(36).substring(2);
-            evt.push(id_evt);
-            url = 'modification.html?id='+id_evt;
-            evt.push(url);
-            evt.push(document.getElementById('titre').value);
-            evt.push(document.getElementById('date').value);
-            evt.push(document.getElementById('pole').value);
-            evt.push(document.getElementById('ouvrage').value);
-            evt.push(document.getElementById('heureDebut').value);
-            evt.push(document.getElementById('heureFin').value);
-            Events.push(evt);
-        }else{
-            alert("Vous n'êtes pas autorisé à créer une réunion.")
-        }
-    }
+// function addEvt(){
+//     if (auto_partielle){
+//         if (document.getElementById('pole').value == Utilisateurs[indice_co][6] | auto_totale){
+//             evt = [];
+//             id_evt = Date.now.toString(36) + Math.random().toString(36).substring(2);
+//             evt.push(id_evt);
+//             url = 'modification.html?id='+id_evt;
+//             evt.push(url);
+//             evt.push(document.getElementById('titre').value);
+//             evt.push(document.getElementById('date').value);
+//             evt.push(document.getElementById('pole').value);
+//             evt.push(document.getElementById('ouvrage').value);
+//             evt.push(document.getElementById('heureDebut').value);
+//             evt.push(document.getElementById('heureFin').value);
+//             Events.push(evt);
+//         }else{
+//             alert("Vous n'êtes pas autorisé à créer une réunion.")
+//         }
+//     }
     
-}
+// }
 
 
 
