@@ -71,12 +71,12 @@ if (role.indexOf('Directeur') != -1){
 
 function openAgenda(){
     if (auto_totale){
-        open('calendarG.html');
+        open('calandarG.html');
     }else{
         if (auto_partielle){
-            open('calendarC.html');
+            open('calandarC.html');
         }else{
-            open('calendarM.html');
+            open('calandarM.html');
         }
     }
 }

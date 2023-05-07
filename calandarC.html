@@ -17,7 +17,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.1.0/fullcalendar.min.js"></script>
 
   <script src="./globalVariables.js"></script>
-
+  <script src="connexion.js"></script>
   <title>BETuF</title>
 </head>
 
@@ -43,9 +43,16 @@
       <img src="source/icons8-france-24.png">
       <label>FR</label>
     </div>
-    <button class="button">Connexcion</button>
-
+    
   </div>
+  <div class="profil" id="profil">
+    <script type="text/javascript" src="connexion.js">
+      document.getElementById("profil").innerHTML=nom + " "+ prenom;
+  </script>
+    <button class="cube-titre" type="button" onclick="logout();">
+        Log out
+    </button>      
+</div>
   <hr class="underNav">
 
   <div class="content">
