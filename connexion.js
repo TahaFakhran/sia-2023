@@ -70,14 +70,13 @@ if (role.indexOf('Directeur') != -1){
 }
 
 function openAgenda(){
-    alert(auto_totale);
     if (auto_totale){
-        open('calandarG.html');
+        open('calendarG.html');
     }else{
         if (auto_partielle){
-            open('calandarC.html');
+            open('calendarC.html');
         }else{
-            open('calandarM.html');
+            open('calendarM.html');
         }
     }
 }
@@ -120,5 +119,3 @@ function addEvt(){
 function logout(){
     open('home.html');
 }
-
-

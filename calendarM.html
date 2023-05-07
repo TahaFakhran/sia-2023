@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.1.0/fullcalendar.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.7/semantic.min.css">
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.7/semantic.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.17.1/moment.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.1.0/fullcalendar.min.js"></script>
+
+  <script src="./globalVariables.js"></script>
+
+  <title>BETuF</title>
+</head>
+
+<body>
+  <div id="topNav">
+    <div id="logo">
+      BETuF
+    </div>
+
+    <ul>
+      <li>CHANTIERS</li>
+      <li>INFORMATIONS</li>
+      <li>LES INDISPENSABLES</li>
+      <li>BETuF</li>
+    </ul>
+
+    <div id="search">
+      <input class="searchInput" type="text" placeholder="Search..."> <i class="fa fa-search"></i>
+    </div>
+
+
+    <div id="lang">
+      <img src="source/icons8-france-24.png">
+      <label>FR</label>
+    </div>
+    <div class="profil" id="profil">
+        <script type="text/javascript">
+          document.getElementById("profil").innerHTML=nom + " "+ prenom;
+      </script>
+        <button class="cube-titre" type="button" onclick="logout();">
+            Log out
+        </button>      
+    </div>
+
+  </div>
+  <hr class="underNav">
+
+  <div class="content">
+    <h2>Agenda</h2>
+    
+
+
+    <div class="ui container">
+
+      <select class="ui dropdown item" name="pole" id="pole-select">
+      </select>
+      <select class="ui dropdown item" name="categ" id="categ-select">
+      </select>
+    
+      <div class="ui menu">
+        
+      <div class="ui container">
+        <div class="ui grid">
+          <div class="ui sixteen column">
+            <div id="calendar"></div>
+          </div>
+        </div>
+      </div>
+
+    </div> 
+      </div>
+
+
+</body>
+
+<script>
+  $(document).ready(function () {
+
+    $('#calendar').fullCalendar({
+      header: {
+        left: 'prev,next today',
+        center: 'title',
+        right: 'month,basicWeek,basicDay'
+      },
+      defaultDate: '2023-05-12',
+      navLinks: true, // can click day/week names to navigate views
+      editable: true,
+      eventLimit: true, // allow "more" link when too many events
+      events: eventDBFiltre
+    });
+
+  });
+
+  
+
+
+//Copy From original database
+  var eventDBFiltreByPerson = eventDB;
+
+  //Apply filters
+  let userInd = sessionStorage.getItem("indice_co");
+  console.log("Pole du mec :"+Utilisateurs[userInd][6])
+  eventDBFiltreByPerson = eventDBFiltreByPerson.filter(event => event.pole == Utilisateurs[userInd][6])
+  eventDBFiltre = eventDBFiltreByPerson
+
+
+</script>
+
+<script>
+  //AJOUTER LES POLES
+
+
+  //Loop les elements dans le select
+  selectPole = document.getElementById("pole-select")
+
+  var optionX = document.createElement("option");
+    optionX.value = "Tout"
+    optionX.innerText = "Tout"
+    selectPole.append(optionX)
+  
+
+    var optionX = document.createElement("option");
+    optionX.value = "Personel"
+    optionX.innerText = "Personel"
+    selectPole.append(optionX)
+
+
+
+
+  //Loop les elements dans le select
+  selectCateg = document.getElementById("categ-select")
+  //Ajouter Tout
+  var optionX = document.createElement("option");
+    optionX.value = "Tout"
+    optionX.innerText = "Tout"
+    optionX.id = "cg"
+    selectCateg.append(optionX)
+//Ajouter le rest des elements
+  ouvrages_list.forEach(element => {
+    var optionX = document.createElement("option");
+    optionX.value = element.name
+    optionX.innerText = element.name
+
+    optionX.id = "cg"+element.id
+    selectCateg.append(optionX)
+  });
+
+console.log(Utilisateurs[userInd][0]);
+
+//Filtering POLE
+selectPole.addEventListener("change", function() {
+
+  
+
+  filter()
+
+$('#calendar').fullCalendar('removeEvents');
+
+eventDBFiltre.forEach(element => {
+  $('#calendar').fullCalendar( 'renderEvent', element);
+  })
+});
+
+
+
+//Filtering Categorie
+selectCateg.addEventListener("change", function() {
+
+  filter()
+
+$('#calendar').fullCalendar('removeEvents');
+
+eventDBFiltre.forEach(element => {
+  $('#calendar').fullCalendar( 'renderEvent', element);
+  })
+});
+
+
+
+
+
+
+
+
+
+
+function filter(){
+console.log("categ : " + selectCateg.value);
+console.log("pole : " + selectPole.value);
+console.log("id : "+Utilisateurs[userInd][0]);
+
+if(selectPole.value == "Tout" && selectCateg.value == "Tout"){
+console.log("am i here ?")
+eventDBFiltre = eventDBFiltreByPerson;
+console.log(eventDBFiltreByPerson)
+console.log(eventDBFiltre)
+}
+else if(selectPole.value == "Tout"){
+
+eventDBFiltre = eventDBFiltreByPerson.filter(event => event.ouvrage == selectCateg.value)
+
+}
+else if(selectPole.value == "Personel" && selectCateg.value == "Tout"){
+
+eventDBFiltre = eventDBFiltreByPerson.filter(event => event.persone == Utilisateurs[userInd][0])
+}
+else if(selectPole.value == "Personel"){
+
+eventDBFiltre = eventDBFiltreByPerson.filter(event => event.persone == Utilisateurs[userInd][0] && event.ouvrage == selectCateg.value )
+
+}else if(selectCateg.value == "Tout"){
+
+eventDBFiltre = eventDBFiltreByPerson.filter(event => event.pole == selectPole.value)
+
+}else {
+
+eventDBFiltre = eventDBFiltreByPerson.filter(event => event.pole == selectPole.value && event.ouvrage == selectCateg.value)
+}
+}
+</script>
+
+</html>
