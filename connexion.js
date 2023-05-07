@@ -34,7 +34,10 @@ function login(){
     open('login.html');
 }
 
-
+if (sessionStorage.getItem("indice_co")) {
+    // Restore the contents of the text field
+    indice_co = sessionStorage.getItem("indice_co");
+  }
 
 function connexion(){
     var form = document.forms['form'];
@@ -69,12 +72,12 @@ if (role.indexOf('Directeur') != -1){
 function openAgenda(){
     alert(auto_totale);
     if (auto_totale){
-        open('calendarG.html');
+        open('calandarG.html');
     }else{
         if (auto_partielle){
-            open('calendarC.html');
+            open('calandarC.html');
         }else{
-            open('calendarM.html');
+            open('calandarM.html');
         }
     }
 }
