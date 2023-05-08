@@ -54,7 +54,7 @@
   <script type="text/javascript">
     selectPole = document.getElementById("ouvrage");
 
-    poles_list.forEach((element) => {
+    ouvrages_list.forEach((element) => {
       var optionX = document.createElement("option");
       optionX.value = element.name;
       optionX.innerText = element.name;
@@ -91,15 +91,33 @@
       const random_id =
         Date.now().toString(36) + Math.random().toString(36).substr(2);
 
+      let personneid = "";
+      for (let i = 0; i < Utilisateurs2.length; i++) {
+        let nomComplet = Utilisateurs2[i][1] + " " + Utilisateurs2[i][2];
+        if (nomComplet === personne) {
+          personneid = Utilisateurs2[i][0];
+          break;
+        }
+      }
+
+      let pole = "";
+
+      for (let i = 0; i < Utilisateurs2.length; i++) {
+        if (Utilisateurs2[i][0] === personneid) {
+          pole = Utilisateurs2[i][6];
+          break;
+        }
+      }
+
       const newEvent = {
         id: random_id,
         title: titre,
         start: startDateTime.toISOString(),
         end: endDateTime.toISOString(),
-        persone: personne,
+        persone: personneid,
         url: "Modifier.html?id=" + random_id,
         ouvrage: ouvrage,
-        pole: ouvrage,
+        pole: pole,
       };
 
       const eventdb = JSON.parse(sessionStorage.getItem("eventdb"));
