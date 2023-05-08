@@ -46,8 +46,6 @@
     
     <div class="profil" id="profil">
       <script type="text/javascript">
-        console.log("nom")
-        console.log(nom)
         document.getElementById("profil").innerHTML=nom + " "+ prenom;
     </script>
       <button class="cube-titre" type="button" onclick="logout();">
@@ -108,13 +106,20 @@
   
 
 
-//Copy From original database
-  var eventDBFiltreByPerson = eventDB;
+  // READ SESSION
+  const eventdb1 = JSON.parse(sessionStorage.getItem('eventdb'));
+  let userInd = sessionStorage.getItem("indice_co");
+
+  var eventDBFiltreByPerson;
+
+  if (eventdb1 == null) {
+    eventDBFiltreByPerson = eventDB.filter(event => event.pole == Utilisateurs2[userInd][6])
+  }else{
+    eventDBFiltreByPerson = eventdb1.filter(event => event.pole == Utilisateurs2[userInd][6])
+  }
+
 
   //Apply filters
-  let userInd = sessionStorage.getItem("indice_co");
-  console.log("Pole du mec :"+Utilisateurs2[userInd][6])
-  eventDBFiltreByPerson = eventDBFiltreByPerson.filter(event => event.pole == Utilisateurs2[userInd][6])
   eventDBFiltre = eventDBFiltreByPerson
 
 

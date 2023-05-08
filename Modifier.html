@@ -41,7 +41,9 @@
         </div>
         <div class="form-group">
           <button type="submit" id="submitBtn">Modify</button>
-          <button type="button" id="cancelBtn">Cancel</button>
+          <button type="button" id="cancelBtn" onclick="openAgenda();">
+            Cancel
+          </button>
           <button type="button" id="DeleteBtn">Delete</button>
           <div id="confirmation-popup" class="hidden">
             <p>Are you sure you want to delete?</p>
@@ -67,12 +69,13 @@
     });
 
     confirmDeleteButton.addEventListener("click", function () {
-      // Delete the item here
+      deleteEvent();
       // remove id bla bla bla
       confirmationPopup.classList.add("hidden");
     });
   </script>
   <script src="./globalVariables.js"></script>
+  <script src="./connexion.js" language="JavaScript"></script>
   <script type="text/javascript">
     selectPole = document.getElementById("ouvrage");
 
@@ -87,7 +90,7 @@
 
     selectPersonne = document.getElementById("personne");
 
-    Utilisateurs.forEach((user) => {
+    Utilisateurs2.forEach((user) => {
       var optionX = document.createElement("option");
       optionX.value = user[1] + " " + user[2];
       optionX.innerText = user[1] + " " + user[2];
@@ -95,5 +98,90 @@
       optionX.id = user[0];
       selectPersonne.append(optionX);
     });
+
+    // autofill data
+    const eventdb = JSON.parse(sessionStorage.getItem("eventdb"));
+    let newEventdb;
+    if (eventdb == null) {
+      newEventdb = eventDB;
+    } else {
+      newEventdb = eventdb;
+    }
+    const urlParams = new URLSearchParams(window.location.search);
+    const id = urlParams.get("id");
+
+    const event = eventdb.find((e) => e.id === id);
+
+    document.getElementById("titre").value = event.title;
+    document.getElementById("date").value = event.start.slice(0, 10);
+    document.getElementById("heureDebut").value = event.start.slice(11, 16);
+    document.getElementById("heureFin").value = event.end.slice(11, 16);
+
+    // code modifier
+    const form = document.querySelector("form");
+    form.addEventListener("submit", function (event) {
+      event.preventDefault();
+
+      const titre = document.querySelector("#titre").value;
+      const date = document.querySelector("#date").value;
+      const personne = document.querySelector("#personne").value;
+      const ouvrage = document.querySelector("#ouvrage").value;
+      const heureDebut = document.querySelector("#heureDebut").value;
+      const heureFin = document.querySelector("#heureFin").value;
+
+      const startDateTime = new Date(`${date}T${heureDebut}`);
+      const endDateTime = new Date(`${date}T${heureFin}`);
+
+      const newEvent = {
+        id: id,
+        title: titre,
+        start: startDateTime.toISOString(),
+        end: endDateTime.toISOString(),
+        persone: personne,
+        url: "Modifier.html?id=" + id,
+        ouvrage: ouvrage,
+        pole: ouvrage,
+      };
+
+      const eventdb = JSON.parse(sessionStorage.getItem("eventdb"));
+      let newEventdb;
+      if (eventdb == null) {
+        newEventdb = eventDB;
+      } else {
+        newEventdb = eventdb;
+      }
+      // delete old
+      const index = eventdb.findIndex((event) => event.id === id);
+      if (index !== -1) {
+        eventdb.splice(index, 1);
+      }
+      // add the new one
+      newEventdb.push(newEvent);
+      // session
+      sessionStorage.setItem("eventdb", JSON.stringify(newEventdb));
+      form.reset();
+      openAgenda();
+    });
+
+    function deleteEvent() {
+      const eventdb = JSON.parse(sessionStorage.getItem("eventdb"));
+      let newEventdb;
+      if (eventdb == null) {
+        newEventdb = eventDB;
+      } else {
+        newEventdb = eventdb;
+      }
+      const urlParams = new URLSearchParams(window.location.search);
+      const id = urlParams.get("id");
+
+      const index = eventdb.findIndex((event) => event.id === id);
+
+      // Remove the event from the eventdb array
+      if (index !== -1) {
+        eventdb.splice(index, 1);
+      }
+      sessionStorage.setItem("eventdb", JSON.stringify(newEventdb));
+      openAgenda();
+    }
   </script>
 </html>

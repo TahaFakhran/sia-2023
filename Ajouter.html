@@ -42,12 +42,15 @@
         </div>
         <div class="form-group">
           <button type="submit" id="submitBtn">Add</button>
-          <button type="button" id="cancelBtn">Cancel</button>
+          <button type="button" id="cancelBtn" onclick="openAgenda();">
+            Cancel
+          </button>
         </div>
       </form>
     </div>
   </body>
   <script src="./globalVariables.js"></script>
+  <script src="./connexion.js" language="JavaScript"></script>
   <script type="text/javascript">
     selectPole = document.getElementById("ouvrage");
 
@@ -62,13 +65,56 @@
 
     selectPersonne = document.getElementById("personne");
 
-    Utilisateurs.forEach((user) => {
+    Utilisateurs2.forEach((user) => {
       var optionX = document.createElement("option");
       optionX.value = user[1] + " " + user[2];
       optionX.innerText = user[1] + " " + user[2];
 
       optionX.id = user[0];
       selectPersonne.append(optionX);
+    });
+
+    // code ajouter
+    const form = document.querySelector("form");
+    form.addEventListener("submit", function (event) {
+      event.preventDefault();
+
+      const titre = document.querySelector("#titre").value;
+      const date = document.querySelector("#date").value;
+      const personne = document.querySelector("#personne").value;
+      const ouvrage = document.querySelector("#ouvrage").value;
+      const heureDebut = document.querySelector("#heureDebut").value;
+      const heureFin = document.querySelector("#heureFin").value;
+
+      const startDateTime = new Date(`${date}T${heureDebut}`);
+      const endDateTime = new Date(`${date}T${heureFin}`);
+      const random_id =
+        Date.now().toString(36) + Math.random().toString(36).substr(2);
+
+      const newEvent = {
+        id: random_id,
+        title: titre,
+        start: startDateTime.toISOString(),
+        end: endDateTime.toISOString(),
+        persone: personne,
+        url: "Modifier.html?id=" + random_id,
+        ouvrage: ouvrage,
+        pole: ouvrage,
+      };
+
+      const eventdb = JSON.parse(sessionStorage.getItem("eventdb"));
+      let newEventdb;
+      if (eventdb == null) {
+        newEventdb = eventDB;
+      } else {
+        newEventdb = eventdb;
+      }
+
+      newEventdb.push(newEvent);
+      // session
+      sessionStorage.setItem("eventdb", JSON.stringify(newEventdb));
+      form.reset();
+      openAgenda();
     });
   </script>
 </html>

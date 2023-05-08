@@ -40,7 +40,7 @@
 
 
     <div id="lang">
-      <img src="source/icons8-france-24.png">
+      <img alt="fr" src="source/icons8-france-24.png"/>
       <label>FR</label>
     </div>
 
@@ -104,10 +104,16 @@
   });
 
   
+  
+  // READ SESSION
+  const eventdb1 = JSON.parse(sessionStorage.getItem('eventdb'));
 
-
-//Copy From original database
-  var eventDBFiltreByPerson = eventDB;
+  var eventDBFiltreByPerson;
+  if (eventdb1 == null) {
+    eventDBFiltreByPerson = eventDB;
+  }else{
+    eventDBFiltreByPerson = eventdb1;
+  }
 
   //Apply filters
   let userInd = sessionStorage.getItem("indice_co");

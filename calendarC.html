@@ -103,8 +103,15 @@
   
 
 
-//Copy From original database
-  var eventDBFiltreByPerson = eventDB;
+// READ SESSION
+const eventdb1 = JSON.parse(sessionStorage.getItem('eventdb'));
+
+var eventDBFiltreByPerson;
+if (eventdb1 == null) {
+  eventDBFiltreByPerson = eventDB;
+}else{
+  eventDBFiltreByPerson = eventdb1;
+}
 
   //Apply filters
   let userInd = sessionStorage.getItem("indice_co");
