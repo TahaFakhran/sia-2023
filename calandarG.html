@@ -136,8 +136,8 @@ console.log(eventDBFiltreByPerson);
   
 
     var optionX = document.createElement("option");
-    optionX.value = "Personel"
-    optionX.innerText = "Personel"
+    optionX.value = "Personnel"
+    optionX.innerText = "Personnel"
     selectPole.append(optionX)
 
   poles_list.forEach(element => {
@@ -223,11 +223,11 @@ else if(selectPole.value == "Tout"){
 eventDBFiltre = eventDBFiltreByPerson.filter(event => event.ouvrage == selectCateg.value)
 
 }
-else if(selectPole.value == "Personel" && selectCateg.value == "Tout"){
+else if(selectPole.value == "Personnel" && selectCateg.value == "Tout"){
 
 eventDBFiltre = eventDBFiltreByPerson.filter(event => event.persone == Utilisateurs2[userInd][0])
 }
-else if(selectPole.value == "Personel"){
+else if(selectPole.value == "Personnel"){
 
 eventDBFiltre = eventDBFiltreByPerson.filter(event => event.persone == Utilisateurs2[userInd][0] && event.ouvrage == selectCateg.value )
 
